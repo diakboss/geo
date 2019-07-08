@@ -1,0 +1,36 @@
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      <span >CONNEXION</span>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-label floating>
+            Username
+          </ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>
+              Password
+            </ion-label>
+            <ion-input type="Password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <p>Forgot Password ?<a>Get here</a></p>
+          </ion-item>
+          <button ion-button color="danger" block outline (click)="onHome()"> LOGIN</button>
+      </ion-list>
+      <b>OR</b>
+      <button ion-button color="danger" ion-left block icon-start>
+      <ion-icon name="logo-google" class="google"></ion-icon>
+      <div>login with Google</div>
+      </button>
+      <button ion-button color="primary" ion-left block icon-start style="margin-top: 7%;">
+      <ion-icon name="logo-facebook" class="facebook"></ion-icon>
+      <div>login with Facebook</div>
+      </button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
