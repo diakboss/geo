@@ -13,7 +13,7 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   @ViewChild('content') content :  NavController;
   rootPage:any = LoginPage;
-  profilPage:any =ProfilPage
+  profilPage:any =ProfilPage;
   homePage : any = HomePage
   constructor(public fcm : FCM,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,private menuCtrl:MenuController) {
     platform.ready().then(() => {
