@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the DeplacementPage page.
@@ -15,11 +15,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DeplacementPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private menuCtrl : MenuController,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DeplacementPage');
   }
+  onToggleMenu(){
+    this.menuCtrl.open();
+  }
+
 
 }

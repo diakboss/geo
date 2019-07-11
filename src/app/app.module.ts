@@ -13,7 +13,8 @@ import { ParallaxDirective } from '../directives/parallax/parallax';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { DeplacementPage } from '../pages/deplacement/deplacement';
-
+import { FCM } from '@ionic-native/fcm';
+import { HTTP } from '@ionic-native/http';
 
 
 @NgModule({
@@ -43,6 +44,8 @@ import { DeplacementPage } from '../pages/deplacement/deplacement';
   providers: [
     Geolocation,
     StatusBar,
+    FCM,
+    HTTP,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

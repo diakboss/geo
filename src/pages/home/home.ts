@@ -3,7 +3,9 @@ import { NavController,MenuController, AlertController } from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation'
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
-import { Http,   } from '@angular/http';
+
+import { HTTP } from '@ionic-native/http';
+import { Http, RequestOptions, Headers,  } from '@angular/http';
 declare var google : any;
 
 @Component({
@@ -22,8 +24,9 @@ export class HomePage {
   public directionsDisplay : any;
   public directionsService : any;
   public distanceinMetre : any;
+ 
 
-  constructor(public http : Http,public storage : Storage, public alert : AlertController, public navCtrl: NavController , private geolocation : Geolocation,private menuCtrl : MenuController) {
+  constructor( public httpN: HTTP,public http : Http,public storage : Storage, public alert : AlertController, public navCtrl: NavController , private geolocation : Geolocation,private menuCtrl : MenuController) {
    
 
   }
@@ -120,8 +123,8 @@ export class HomePage {
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
                   var request = 
                             {                      
-                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               destination: new google.maps.LatLng({lat :  34.034190 , lng: -4.997260}),
+                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               travelMode:'DRIVING',
                             };
                               console.log(request);                         
@@ -226,8 +229,8 @@ export class HomePage {
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
                   var request = 
                             {                      
-                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               destination: new google.maps.LatLng({lat :  34.042720, lng:-5.000010}),
+                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               travelMode:'DRIVING',
                             };
                               console.log(request);                         
@@ -334,8 +337,8 @@ export class HomePage {
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
                   var request = 
                             {                      
-                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               destination: new google.maps.LatLng({lat :  34.026480, lng:-4.996140}),
+                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               travelMode:'DRIVING',
                             };
                               console.log(request);                         
@@ -426,6 +429,7 @@ export class HomePage {
                   }else if ( this.new === false){
                     this.new = true
                   }
+                  this.storage.set('map', this.new);
                   this.map = new google.maps.Map( this.mapElement.nativeElement, {
                     center : {lat :resp.coords.latitude , lng: resp.coords.longitude},
                     map :this.map,
@@ -441,8 +445,8 @@ export class HomePage {
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
                   var request = 
                             {                      
-                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               destination: new google.maps.LatLng({lat :  34.044900 , lng: -5.004120}),
+                              origin: new google.maps.LatLng({lat :resp.coords.latitude , lng: resp.coords.longitude}),
                               travelMode:'DRIVING',
                             };
                               console.log(request);                         
@@ -527,5 +531,59 @@ export class HomePage {
   onToggleMenu(){
     this.menuCtrl.open();
   }
+
+  sendNotifications(p : any)
+      {
+ 
+                  let body = 
+                    { 
+                      "to": p.firebase_token,
+                      "notification":
+                      {
+                        "title": "Geo",
+                        "body": "Veuillez .....",
+                        "click_action": "FCM_PLUGIN_ACTIVITY",
+                        "sound": "default"
+                      },
+                      "data":
+                      {
+                        "landing_page": "TabsPage"
+                      }
+                  };
+
+                  let header: any = 
+                    {
+                        'Content-Type': 'application/json',
+                        'Authorization' : 'key=AIzaSyCSQ_TLwPwabJXwkUkr7haInX1Tym1RW98'
+                    }
+
+                  this.httpN.setDataSerializer('json');
+
+                  this.httpN.post('https://fcm.googleapis.com/fcm/send', body, header).then(data =>
+                  {
+                    console.log(JSON.parse(data.data));
+                    let alert1 = this.alert.create({
+                      title: 'Geo',
+                      subTitle: 'Votre demande a été prise en charge  avec succès.',
+                      buttons: 
+                      [
+                        {
+                          text:'OK',
+                          handler : () =>
+                          {
+                                    
+                          }
+                
+                        },
+                      ]
+                    });
+                    alert1.present();   
+                  },
+                  (err) =>
+                  {
+                    console.log(err);               
+                  });
+              
+      } 
   
 }
