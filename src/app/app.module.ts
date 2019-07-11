@@ -10,6 +10,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ProfilPage } from '../pages/profil/profil';
 import { LoginPage } from '../pages/login/login';
 import { ParallaxDirective } from '../directives/parallax/parallax';
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+import { DeplacementPage } from '../pages/deplacement/deplacement';
 
 
 
@@ -19,11 +22,14 @@ import { ParallaxDirective } from '../directives/parallax/parallax';
     HomePage,
     TabsPage,
     ProfilPage,
-    LoginPage
+    LoginPage,
+    DeplacementPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,7 +37,8 @@ import { ParallaxDirective } from '../directives/parallax/parallax';
     HomePage,
     TabsPage,
     ProfilPage,
-    LoginPage
+    LoginPage,
+    DeplacementPage
   ],
   providers: [
     Geolocation,
