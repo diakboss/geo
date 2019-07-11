@@ -1,8 +1,9 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { NavController,MenuController, AlertController } from 'ionic-angular';
+import { NavController,MenuController, AlertController, ToastController } from 'ionic-angular';
 import {Geolocation} from '@ionic-native/geolocation'
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
+import { Toast } from '@ionic-native/toast';
 
 import { HTTP } from '@ionic-native/http';
 import { Http, RequestOptions, Headers,  } from '@angular/http';
@@ -26,13 +27,13 @@ export class HomePage {
   public distanceinMetre : any;
  
 
-  constructor( public httpN: HTTP,public http : Http,public storage : Storage, public alert : AlertController, public navCtrl: NavController , private geolocation : Geolocation,private menuCtrl : MenuController) {
+  constructor(private toastCtrl: ToastController, public httpN: HTTP,public http : Http,public storage : Storage, public alert : AlertController, public navCtrl: NavController , private geolocation : Geolocation,private menuCtrl : MenuController) {
    
 
   }
  
   ionViewWillEnter(){  
-  
+
     this.geolocation.getCurrentPosition().then((resp) => {
 
       this.map = new google.maps.Map( this.mapElement.nativeElement, {
@@ -117,7 +118,11 @@ export class HomePage {
                     scaleControl: false,
                     zoomControl: true,
                   });
-                  
+                  this.toastCtrl.create({
+                    message: 'MESSAGE ENVOYE AVEC SUCCES',
+                    duration: 3000,
+                    position: 'bottom'
+                  }).present();
                    console.log(this.new);
                    this.directionsService = new google.maps.DirectionsService();
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
@@ -223,7 +228,11 @@ export class HomePage {
                     scaleControl: false,
                     zoomControl: true,
                   });
-                  
+                  this.toastCtrl.create({
+                    message: 'MESSAGE ENVOYE AVEC SUCCES',
+                    duration: 3000,
+                    position: 'bottom'
+                  }).present();
                    console.log(this.new);
                    this.directionsService = new google.maps.DirectionsService();
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
@@ -343,7 +352,11 @@ export class HomePage {
                             };
                               console.log(request);                         
                               this.directionsService.route(request, (res, status) => {
-                                
+                                this.toastCtrl.create({
+                                  message: 'MESSAGE ENVOYE AVEC SUCCES',
+                                  duration: 3000,
+                                  position: 'bottom'
+                                }).present();
                                 console.log(status);
                                 if (status == "OK") 
                                 {
@@ -439,7 +452,11 @@ export class HomePage {
                     scaleControl: false,
                     zoomControl: true,
                   });
-                  
+                  this.toastCtrl.create({
+                    message: 'MESSAGE ENVOYE AVEC SUCCES',
+                    duration: 3000,
+                    position: 'bottom'
+                  }).present();
                    console.log(this.new);
                    this.directionsService = new google.maps.DirectionsService();
                    this.directionsDisplay = new google.maps.DirectionsRenderer();
@@ -532,58 +549,6 @@ export class HomePage {
     this.menuCtrl.open();
   }
 
-  sendNotifications(p : any)
-      {
- 
-                  let body = 
-                    { 
-                      "to": p.firebase_token,
-                      "notification":
-                      {
-                        "title": "Geo",
-                        "body": "Veuillez .....",
-                        "click_action": "FCM_PLUGIN_ACTIVITY",
-                        "sound": "default"
-                      },
-                      "data":
-                      {
-                        "landing_page": "TabsPage"
-                      }
-                  };
-
-                  let header: any = 
-                    {
-                        'Content-Type': 'application/json',
-                        'Authorization' : 'key=AIzaSyCSQ_TLwPwabJXwkUkr7haInX1Tym1RW98'
-                    }
-
-                  this.httpN.setDataSerializer('json');
-
-                  this.httpN.post('https://fcm.googleapis.com/fcm/send', body, header).then(data =>
-                  {
-                    console.log(JSON.parse(data.data));
-                    let alert1 = this.alert.create({
-                      title: 'Geo',
-                      subTitle: 'Votre demande a été prise en charge  avec succès.',
-                      buttons: 
-                      [
-                        {
-                          text:'OK',
-                          handler : () =>
-                          {
-                                    
-                          }
-                
-                        },
-                      ]
-                    });
-                    alert1.present();   
-                  },
-                  (err) =>
-                  {
-                    console.log(err);               
-                  });
-              
-      } 
+   
   
 }

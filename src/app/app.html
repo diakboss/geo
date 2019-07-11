@@ -11,13 +11,12 @@
                         Menu
                       </ion-item-divider>
                       <button menuClose ion-item (click)="onNavigate(profilPage)">
-                          <h2>profil</h2>
+                          <h2>Profil</h2>
                           <ion-icon item-left name="contact"></ion-icon>
                          </button>
                          <button menuClose ion-item>
-                            <h2>mail</h2>
-                            <p>consultez vos mail</p>
-                            <ion-icon item-left name="mail"></ion-icon>
+                            <h2>Accueil</h2>                            
+                            <ion-icon item-left name="home" (click)="onNavigate(homePage)"></ion-icon>
                            </button>  
                              <button menuClose ion-item>
                                 <h2>A propos</h2>

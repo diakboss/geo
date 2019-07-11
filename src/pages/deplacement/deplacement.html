@@ -21,30 +21,33 @@
 
 
       
-          <ion-list>
-            <button ion-item (click)="modifyLastname()"><ion-icon style="font-size: 1.3em; font-weight: bolder;" ios="ios-person-outline" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre nom</button>
-            <button ion-item (click)="modifyFirstname()"><ion-icon style="font-size: 1.3em; font-weight: bolder" ios="ios-person-outline" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre prénom</button>
-            <button ion-item (click)="modifyTelephone()"><ion-icon style="font-size: 1.3em; font-weight: bolder;" ios="ios-call-outline" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre téléphone</button>
+          <ion-list style ="margin-top : 30%" >
+            <ion-item no-lines>
+
+            </ion-item>
+            <ion-item >
+                <ion-input type="text" placeholder="A"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="B"></ion-input>
+            </ion-item>
+            <ion-item>
+                  <ion-input type="text" placeholder="C"></ion-input>
+            </ion-item>
+            <ion-item>
+                    <ion-input type="text" placeholder=""></ion-input>
+            </ion-item>
+
+
         </ion-list>
+
+        <button  ion-button color="danger" block outline (click)="onHome()">Confirmer</button>
 
        
-        <ion-list>
-              <button ion-item (click)="modifyAddress()"><ion-icon style="font-size: 1.3em; font-weight: bolder;" md="custom-address" ios="custom-address" ></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre adresse</button>
-              
-              <button ion-item (click)="modifyCode()"><ion-icon style="font-size: 1.3em; font-weight: bolder;" ios="ios-paper-plane-outline" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre code postal</button>
-              <button ion-item (click)="modifyCity()"><ion-icon style="font-size: 1.3em; font-weight: bolder" md="custom-city-outline" ios="custom-city" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre ville</button>   
-        </ion-list>
-
-               
-        <ion-list>
-            <button ion-item (click)="modifyMail()"><ion-icon style="font-size: 1.3em; font-weight: bolder;" ios="ios-mail-outline" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre adresse e-mail</button>
-            <button ion-item (click)="modifyPassword()"><ion-icon style="font-size: 1.3em; font-weight: bolder;" ios="ios-lock-outline" color="pink"></ion-icon>&nbsp;&nbsp;Consulter/Modifier votre mot de passe </button>        
-          </ion-list>
+        
 
           
-        <ion-list>
-              <button ion-item (click)="onDeplacement()"><ion-icon style="font-size: 1.3em; font-weight: bolder" ios="ios-bicycle" color="pink"></ion-icon>&nbsp;&nbsp;Votre moyen de déplacement</button>     
-        </ion-list>
+     
        
      
 

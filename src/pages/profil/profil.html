@@ -1,7 +1,14 @@
 <ion-header>
-<ion-navbar color="custome">
-<ion-title text-center>profile</ion-title>
-</ion-navbar>
+
+
+<ion-toolbar color="custome">
+    <ion-buttons start>
+        <button ion-button icon-only (click)="onToggleMenu()">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+        </ion-buttons>
+<ion-title text-center>Profile</ion-title>
+</ion-toolbar>
 
 </ion-header>
 
@@ -22,13 +29,13 @@
 </ion-card>
 <ion-list>
       <button menuClose ion-item>
-          <h2>Changer nom</h2>
+          <h2>Mohamed</h2>
          </button>
          <button menuClose ion-item>
-            <h2>Entrez votre ancien mot de pass</h2>
+            <h2>momo@gmail.com</h2>
            </button>  
              <button menuClose ion-item>
-                <h2> Entrez le nouveau mot de pass</h2>
+                <h2>*************</h2>
              </button>
   </ion-list>
 
